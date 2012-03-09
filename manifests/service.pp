@@ -15,7 +15,10 @@ class apache::service {
 
   exec { 'reload-apache':
     command     => "/etc/init.d/${http_service} reload",
-    onlyif      => '/usr/sbin/apachectl -t',
+    onlyif              => $::operatingsystem ? {
+      /(Debian|Ubuntu)/ => '/usr/sbin/apache2ctl -t',
+      default           => '/usr/sbin/apachectl -t',
+    },
     require     => Service['httpd'],
     refreshonly => true,
   }
