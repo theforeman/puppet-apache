@@ -19,7 +19,7 @@ class apache::service {
       /(Debian|Ubuntu)/ => '/usr/sbin/apache2ctl -t',
       default           => '/usr/sbin/apachectl -t',
     },
-    require     => Service['httpd'],
+    require     => Service[$http_service],
     refreshonly => true,
   }
 
