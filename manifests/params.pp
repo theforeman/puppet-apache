@@ -4,13 +4,13 @@ class apache::params {
       $user      = 'www-data'
       $group     = 'www-data'
       $configdir = '/etc/apache2/conf.d'
-      $conffile  = 'apache2.conf'
+      $conffile  = '/etc/apache2/apache2.conf'
     }
     default: {
       $user      = 'apache'
       $group     = 'apache'
       $configdir = '/etc/httpd/conf.d'
-      $conffile  = 'httpd.conf'
+      $conffile  = '/etc/httpd/conf/httpd.conf'
     }
   }
 
