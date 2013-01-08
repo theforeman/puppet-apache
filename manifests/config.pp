@@ -19,7 +19,7 @@ class apache::config {
     owner  => $apache::params::user,
     group  => $apache::params::group
   }
-  file { "${apache::params::configdir}/${apache::params::conffile}":
+  file { $apache::params::conffile:
     mode    => '0644',
     notify  => Exec['reload-apache'],
     require => Class['apache::install'],
