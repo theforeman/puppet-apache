@@ -15,7 +15,7 @@ class apache::service {
 
   exec { 'reload-apache':
     command             => "service ${http_service} reload",
-    path                => ["/sbin", "/usr/sbin"],
+    path                => ["/usr/bin", "/sbin", "/usr/sbin"],
     onlyif              => $::operatingsystem ? {
       /(Debian|Ubuntu)/ => '/usr/sbin/apache2ctl -t',
       default           => '/usr/sbin/apachectl -t',
