@@ -1,13 +1,13 @@
 class apache::install {
-  case $::operatingsystem {
-    redhat,centos,fedora,Scientific: {
+  case $::osfamily {
+    RedHat: {
       $http_package = 'httpd'
     }
-    Debian,Ubuntu: {
+    Debian: {
       $http_package = 'apache2'
     }
     default: {
-      fail("${::hostname}: This module does not support operatingsystem ${::operatingsystem}")
+      fail("${::hostname}: This module does not support operatingsystem ${::osfamily}")
     }
   }
 
