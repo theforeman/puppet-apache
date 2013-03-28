@@ -1,6 +1,6 @@
 class apache::install {
-  case $::operatingsystem {
-    redhat,centos,fedora,Scientific: {
+  case $::osfamily {
+    RedHat: {
       $http_package = 'httpd'
     }
     Debian,Ubuntu: {
