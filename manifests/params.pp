@@ -1,6 +1,6 @@
 class apache::params {
-  case $::operatingsystem {
-    Debian,Ubuntu: {
+  case $::osfamily {
+    Debian: {
       $user      = 'www-data'
       $group     = 'www-data'
       $configdir = '/etc/apache2/conf.d'
