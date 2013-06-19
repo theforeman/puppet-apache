@@ -31,4 +31,18 @@ class apache::config {
     require => Class['apache::install'],
   }
 
+  # Ensure the Version module is loaded as we need it in the Foreman vhosts
+  # RedHat distros come with this enabled, so it's just Debian that needs hand-holding
+  case $::osfamily {
+    Debian:  {
+      exec { 'enable-version':
+        command => '/usr/sbin/a2enmod version',
+        creates => '/etc/apache2/mods-enabled/version.load',
+        notify  => Service['httpd'],
+        require => Class['apache::install'],
+      }
+    }
+    default: {}
+  }
+
 }
