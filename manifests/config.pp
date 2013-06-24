@@ -32,9 +32,11 @@ class apache::config {
   }
 
   # Ensure the Version module is loaded as we need it in the Foreman vhosts
-  # RedHat distros come with this enabled, so it's just Debian that needs hand-holding
-  case $::osfamily {
-    Debian:  {
+  # RedHat distros come with this enabled. Newer Debian and Ubuntu distros
+  # comes also with this enabled. Only old Debian and Ubuntu distros (squeeze,
+  # lucid, precise) needs hand-holding.
+  case $::lsbdistcodename {
+    'squeeze','lucid','precise': {
       exec { 'enable-version':
         command => '/usr/sbin/a2enmod version',
         creates => '/etc/apache2/mods-enabled/version.load',
