@@ -47,4 +47,22 @@ class apache::config {
     default: {}
   }
 
+  # For Apache2 Rails assets optimalization
+  case $::osfamily {
+    'Debian': {
+      exec { 'enable-expires':
+        command => '/usr/sbin/a2enmod expires',
+        creates => '/etc/apache2/mods-enabled/expires.load',
+        notify  => Service['httpd'],
+        require => Class['apache::install'],
+      }
+      exec { 'enable-rewrite':
+        command => '/usr/sbin/a2enmod rewrite',
+        creates => '/etc/apache2/mods-enabled/rewrite.load',
+        notify  => Service['httpd'],
+        require => Class['apache::install'],
+      }
+    }
+    default: {}
+  }
 }
