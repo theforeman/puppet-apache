@@ -8,4 +8,3 @@ description 'Module for configuring Apache HTTP server for Foreman'
 project_page 'http://github.com/theforeman/foreman-installer'
 
 ## Add dependencies, if any:
-dependency 'theforeman/passenger', '>= 1.3.0'
