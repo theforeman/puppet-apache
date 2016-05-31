@@ -1,6 +1,6 @@
 class apache::install {
   case $::osfamily {
-    RedHat: {
+    RedHat, Linux: {
       $http_package = 'httpd'
     }
     Debian: {
